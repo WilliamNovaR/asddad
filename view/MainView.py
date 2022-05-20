@@ -27,8 +27,6 @@ class MainView:
 
         # Estretagia para manejar el "estado" del controllador y del modelo entre cada cambio de ventana
         if 'main_view' not in st.session_state:
-            self.menu_actual = "Home" #setea el menu en home
-
             # Conexión con el controlador
             self.data = Data()
             self.acciones = Acciones()
@@ -76,8 +74,7 @@ class MainView:
         with st.sidebar:
             self.menu_actual = option_menu("Menu",
                                         self.acciones.acciones,
-                                        icons= self.acciones.iconos, menu_icon="cast",
-                                        default_index=0)
+                                        icons= self.acciones.iconos, menu_icon="cast")
 
     def controlar_menu(self):
         if self.menu_actual == "Home":
