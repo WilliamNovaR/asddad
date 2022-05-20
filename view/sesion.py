@@ -27,18 +27,18 @@ def iniciar_sesion( st, cuentasController, accionesController):
     #se leen los datos para iniciar sesion
     usuario = st.text_input( "Usuario:", key = 23 )
     contrasena = st.text_input( "Contraseña:", key = 7 )
-    col1, col2 = st.columns([0.2, 1])#se crean las columnas para pode tener los botonos de iniciar sesion y entrar juntos
-    with col1:
-        login = st.button( "Iniciar sesion" )
+    login = st.button( "Iniciar sesion" )
+    for i in cuentasController.cuentas:
+        if usuario == i.usuario and contrasena == i.contrasena: #comprueba que el usuario y contraseña coicidan y esten creados
+            #los condicionales sirven para generar los menos diferente dependiendo del tipo de cuenta que se loguea
+            accionesController.menu_acciones( i.tipo )
+            if login:
+                return
         if login:
-            for i in cuentasController.cuentas:
-                if usuario == i.usuario and contrasena == i.contrasena: #comprueba que el usuario y contraseña coicidan y esten creados
-                    #los condicionales sirven para generar los menos diferente dependiendo del tipo de cuenta que se loguea
-                    accionesController.menu_acciones( i.tipo )
-                    with col2:
-                        st.button("Entrar")
-                        return
             st.error( "Datos no validos" ) #en caso que la sesion no exista o no coicidan los datos muestra el error
+
+
+
 
 #esta funcion es la que parmite salir de la sesion para poder volver a loguarse
 def cerrar_sesion(st, accionesController):

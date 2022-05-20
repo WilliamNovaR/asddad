@@ -122,11 +122,16 @@ def listar_evaluacion(st, controller, criterios, seleccionar_estudiantes):
                 st.subheader("Recomendación y apreciaciones: " + evaluacion.recomendacion)
 
 def editar_calificacion(st, controller, criterios, seleccionar_estudiantes):
+    flag = 0
     honorifico = 4.5 # carga la nota de honorifico
     #en caso de escoger la opcion editar permite cambiar los valores del estudiante y sus calificaciones
     for evaluacion in controller.evaluaciones:
         if seleccionar_estudiantes == evaluacion.nombre_autor:
             evaluacion.id_estudiante = st.text_input("Id estudiante", value=evaluacion.id_estudiante)
+            for i in controller.evaluaciones:
+                if evaluacion.id_estudiante == i.id_estudiante:
+                    st.error("Id repetida")
+                    flag = 1
             evaluacion.periodo = st.text_input("Periodo de evaluacion", value=evaluacion.periodo)
             evaluacion.nombre_autor = st.text_input("Nombre del autor", value=evaluacion.nombre_autor)
             #este if sirve para saber cual es el valor con el que se guardo para que a la hora de editar esta dato sea el seleccionado
@@ -167,7 +172,7 @@ def editar_calificacion(st, controller, criterios, seleccionar_estudiantes):
                 evaluacion.recomendacion = st.text_input("Recomendación y apreciaciones: ",
                                                                      value=evaluacion.recomendacion)
     enviar_btn = st.button("Editar", key = 2 * 11 )
-    if enviar_btn:
+    if enviar_btn and flag:
         evaluacion.nota = round(evaluacion.nota, 1)
         controller.cargar()
         st.success("Cambio realizado")
