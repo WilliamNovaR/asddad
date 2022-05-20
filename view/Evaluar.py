@@ -91,6 +91,7 @@ def seleccion( st, controller, criterios_controller ):
         editar_calificacion( st, controller, criterios, seleccionar_estudiantes )
 
 def listar_evaluacion(st, controller, criterios, seleccionar_estudiantes):
+    honorifico = 4.5
     for evaluacion in controller.evaluaciones:
         if seleccionar_estudiantes == evaluacion.nombre_autor: #comprueba que se va a ver los datos del estudiante seleccionado
             #imprime los datos
@@ -104,7 +105,7 @@ def listar_evaluacion(st, controller, criterios, seleccionar_estudiantes):
             st.subheader("Enfasis en: " + evaluacion.enfasis)
             st.subheader("Jurado1 : " + evaluacion.nombre_jurado1)
             st.subheader("Jurado2 : " + evaluacion.nombre_jurado2)
-            seleccionar_criterio = st.selectbox("Escoger criterio", criterios)
+            seleccionar_criterio = st.selectbox("Escoger criterio", criterios, key = int(evaluacion.id_estudiante) )
             #busca e imprime los datos del criterio seleccionado
             for i in evaluacion.calificacion:
                 if seleccionar_criterio == i.id_criterio:
@@ -117,7 +118,7 @@ def listar_evaluacion(st, controller, criterios, seleccionar_estudiantes):
             st.subheader("Nota final : " + str(evaluacion.nota))
             st.subheader("Comentario final : " + evaluacion.comentario_final)
             #revisa si la nota fue mayor a 4.5 para desplegar la obcion de recomendaciones y apreciaciones
-            if evaluacion.nota >= 4.5:
+            if evaluacion.nota >= honorifico:
                 st.subheader("Recomendación y apreciaciones: " + evaluacion.recomendacion)
 
 def editar_calificacion(st, controller, criterios, seleccionar_estudiantes):
