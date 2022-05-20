@@ -32,9 +32,8 @@ def iniciar_sesion( st, cuentasController, accionesController):
         for i in cuentasController.cuentas:
             if usuario == i.usuario and contrasena == i.contrasena: #comprueba que el usuario y contraseña coicidan y esten creados
                 #los condicionales sirven para generar los menos diferente dependiendo del tipo de cuenta que se loguea
-                if st.button( "Entrar" ):
-                    accionesController.menu_acciones(i.tipo)
-                    return
+                accionesController.menu_acciones(i.tipo)
+                return
         st.error( "Datos no validos" ) #en caso que la sesion no exista o no coicidan los datos muestra el error
 
 
