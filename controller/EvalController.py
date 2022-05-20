@@ -121,7 +121,7 @@ class EvaluadorController:
         for i in self.evaluaciones:
             for j in range(len(notas)):
                 print("!!!!!!!!!!!!!!!!!!!!!!!-----------", i.calificacion)
-                if len( i.calificacion ) > 0 and len( notas ) <= len(i.calificacion) and i.calificacion[j].identificador == criterios_controller.criterios[j].identificador: # revisa que solo se tenga en cuenta a personas que ya se calificaron
+                if len( i.calificacion ) > 0 and len( notas ) <= len(i.calificacion) and i.calificacion[j].id_criterio == criterios_controller.criterios[j].identificador: # revisa que solo se tenga en cuenta a personas que ya se calificaron
                     notas[j] += i.calificacion[j].nota_final
         # saca el promedio de las notas
         for k in range(len(notas)):
