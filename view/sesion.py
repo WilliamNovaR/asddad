@@ -36,7 +36,8 @@ def iniciar_sesion( st, cuentasController, accionesController):
             flag = 1
 
     if login and flag == 1:
-        if st.button( "Entrar" ):
+        entrar = st.button( "Entrar" )
+        if entrar:
             st.success("Iniciando")
             return
     if login and flag == 0:

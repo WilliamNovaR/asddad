@@ -124,12 +124,13 @@ def listar_evaluacion(st, controller, criterios, seleccionar_estudiantes):
 def editar_calificacion(st, controller, criterios, seleccionar_estudiantes):
     flag = 0
     honorifico = 4.5 # carga la nota de honorifico
+    index = 0
     #en caso de escoger la opcion editar permite cambiar los valores del estudiante y sus calificaciones
     for evaluacion in controller.evaluaciones:
         if seleccionar_estudiantes == evaluacion.nombre_autor:
             evaluacion.id_estudiante = st.text_input("Id estudiante", value=evaluacion.id_estudiante)
             for i in controller.evaluaciones:
-                if evaluacion.id_estudiante == i.id_estudiante:
+                if evaluacion.id_estudiante == i.id_estudiante and:
                     st.error("Id repetida")
                     flag = 1
             evaluacion.periodo = st.text_input("Periodo de evaluacion", value=evaluacion.periodo)
@@ -170,7 +171,8 @@ def editar_calificacion(st, controller, criterios, seleccionar_estudiantes):
             if evaluacion.nota >= honorifico: #mira si debe desplegar la opcion de los trabjos con nota mayor a 4.5
                 st.subheader( "Recomendaciones honorificos" )
                 evaluacion.recomendacion = st.text_input("Recomendación y apreciaciones: ",
-                                                                     value=evaluacion.recomendacion)
+                                                             value=evaluacion.recomendacion)
+        index += 1
     enviar_btn = st.button("Editar", key = 2 * 11 )
     if enviar_btn and flag:
         evaluacion.nota = round(evaluacion.nota, 1)
