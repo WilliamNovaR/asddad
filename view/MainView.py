@@ -82,9 +82,7 @@ class MainView:
         elif self.menu_actual == 'Crear cuenta':
             crear_cuenta( st, self.cuentas_controller )
         elif self.menu_actual == 'Iniciar sesion':
-            log = iniciar_sesion( st, self.cuentas_controller, self.acciones )
-            if log == 1:
-                self._dibujar_layout()
+            iniciar_sesion( st, self.cuentas_controller, self.acciones )
         elif self.menu_actual == "Inicilizar datos actas":
             agregar_datos(st, self.controller)
         elif self.menu_actual == "Modificar y ver criterios":
