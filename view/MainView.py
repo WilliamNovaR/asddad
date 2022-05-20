@@ -27,7 +27,7 @@ class MainView:
 
         # Estretagia para manejar el "estado" del controllador y del modelo entre cada cambio de ventana
         if 'main_view' not in st.session_state:
-            self.menu_actual = "About"
+            self.menu_actual = "Home" #setea el menu en home
 
             # Conexión con el controlador
             self.data = Data()
