@@ -36,8 +36,9 @@ def iniciar_sesion( st, cuentasController, accionesController):
             flag = 1
 
     if login and flag == 1:
-        st.success("Iniciando")
-        return
+        if st.button( "Entrar" ):
+            st.success("Iniciando")
+            return
     if login and flag == 0:
         st.error("Datos no validos")  # en caso que la sesion no exista o no coicidan los datos muestra el error
         return
