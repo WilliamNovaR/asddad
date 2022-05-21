@@ -47,10 +47,10 @@ def grafica_notas( st, controller, notas, nombres ):
 def grifica_criterios( st, controller, criterio_controler, notas, nombres ):
     #crea una grafica con la nota promedio de todos los criterios
     nombres = criterio_controler.listar_nombre()
-    cantidad = controller.contar_calificados()
     numeros_criterio = criterio_controler.lista_numero_criterios()
     notas = criterio_controler.arreglo_criterios()
-    controller.promedio_notas_criterios( notas, cantidad, criterio_controler )
+    cantidad = controller.cantidad(criterio_controler)
+    controller.promedio_notas_criterios( notas, cantidad, nombres )
     #crea e imprime tabla
     fig = plt.figure(figsize=(10, 5))
     plt.bar(numeros_criterio, notas)

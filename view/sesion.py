@@ -29,11 +29,14 @@ def iniciar_sesion( st, cuentasController, accionesController):
     contrasena = st.text_input( "Contraseña:", key = 7 )
     login = st.button( "Iniciar sesion" )
     flag = 0
+
+    col1, col2 = st.columns([0.2, 1])  # culumans para tener los botones
     for i in cuentasController.cuentas:
         if usuario == i.usuario and contrasena == i.contrasena: #comprueba que el usuario y contraseña coicidan y esten creados
             #los condicionales sirven para generar los menos diferente dependiendo del tipo de cuenta que se loguea
             accionesController.menu_acciones(i.tipo)
             flag = 1
+
 
     if login and flag == 1:
         entrar = st.button( "Entrar" )
@@ -43,6 +46,16 @@ def iniciar_sesion( st, cuentasController, accionesController):
     if login and flag == 0:
         st.error("Datos no validos")  # en caso que la sesion no exista o no coicidan los datos muestra el error
         return
+    with col1 :
+        if login and flag == 1:
+            entrar = st.button( "Entrar" )
+            if entrar:
+                with col2:
+                    st.success("Iniciando")
+                    return
+        if login and flag == 0:
+            st.error("Datos no validos")  # en caso que la sesion no exista o no coicidan los datos muestra el error
+            return
 
 
 
